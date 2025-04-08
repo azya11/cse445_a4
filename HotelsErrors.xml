@@ -1,119 +1,45 @@
-<Hotel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://abildamirbekuulu.github.io/cse445_a4/Hotels.xsd">
-    <Hotel Rating="4.2">
-        <Name>Renaissance Scottsdale</Name>
-        <Phone>480-123-4567</Phone>
-        <Phone>480-234-5678</Phone>
-        <Address NearstAirport="Scottsdale Airport">
-            <Number>101</Number>
-            <Street>East McDowell Rd</Street>
-            <City>Scottsdale</City>
-            <State>AZ</State>
-            <Zip>85254</Zip>
-        </Address>
-    </Hotel>
-    <Hotel>
-        <!-- Error: Missing required attribute 'Rating' -->
-        <Name>Hyatt Place Phoenix</Name>
-        <Phone>602-345-6789</Phone>
-        <Address NearstAirport="Phoenix Sky Harbor">
-            <Number>202</Number>
-            <Street>North 3rd Ave</Street>
-            <City>Phoenix</City>
-            <State>AZ</State>
-            <Zip>85004</Zip>
-        </Address>
-    </Hotel>
-    <Hotel Rating="4.3">
-        <Name>Sheraton Grand at Wild Horse Pass</Name>
-        <!-- Error: Missing Phone element -->
-        <Address NearstAirport="Phoenix Sky Harbor">
-            <Number>303</Number>
-            <Street>South Mountain Pkwy</Street>
-            <City>Phoenix</City>
-            <State>AZ</State>
-            <Zip>85015</Zip>
-        </Address>
-    </Hotel>
-    <Hotel Rating="4.4">
-        <Name>Embassy Suites by Hilton Mesa</Name>
-        <Phone>480-678-9012</Phone>
-        <!-- Error: Address element missing its closing tag -->
-        <Address NearstAirport="Phoenix Sky Harbor">
-            <Number>404</Number>
-            <Street>Center St</Street>
-            <City>Mesa</City>
-            <State>AZ</State>
-            <Zip>85201</Zip>
-        <!-- Missing </Address> -->
-    </Hotel>
-    <Hotel Rating="4.6">
-        <Name>Omni Scottsdale Resort</Name>
-        <Phone>480-789-0123</Phone>
-        <Phone>480-890-1234</Phone>
-        <Address NearstAirport="Scottsdale Airport">
-            <Number>505</Number>
-            <Street>West Camelback Rd</Street>
-            <City>Scottsdale</City>
-            <State>AZ</State>
-            <Zip>85257</Zip>
-        </Address>
-    </Hotel>
-    <Hotel Rating="4.7">
-        <!-- Error: Duplicate Name elements -->
-        <Name>The Phoenician Resort</Name>
-        <Name>Duplicate Name</Name>
-        <Phone>602-901-2345</Phone>
-        <Address NearstAirport="Phoenix Sky Harbor">
-            <Number>606</Number>
-            <Street>North Drinkwater Blvd</Street>
-            <City>Scottsdale</City>
-            <State>AZ</State>
-            <Zip>85254</Zip>
-        </Address>
-    </Hotel>
-    <Hotel Rating="4.8">
-        <Name>JW Marriott Phoenix Desert Ridge</Name>
-        <Phone>480-012-3456</Phone>
-        <Phone>480-123-4567</Phone>
-        <Address NearstAirport="Phoenix Sky Harbor">
-            <Number>707</Number>
-            <Street>Desert Ridge Pkwy</Street>
-            <City>Phoenix</City>
-            <State>AZ</State>
-            <Zip>85050</Zip>
-        </Address>
-    </Hotel>
-    <Hotel Rating="4.2">
-        <Name>The Clarendon Hotel and Spa</Name>
-        <Phone>602-234-5678</Phone>
-        <Address NearstAirport="Phoenix Sky Harbor">
-            <Number>808</Number>
-            <Street>Central Ave</Street>
-            <City>Phoenix</City>
-            <State>AZ</State>
-            <Zip>85004</Zip>
-        </Address>
-    </Hotel>
-    <Hotel Rating="4.3">
-        <Name>Hilton Garden Inn Glendale</Name>
-        <Phone>623-345-6789</Phone>
-        <Address NearstAirport="Phoenix Sky Harbor">
-            <Number>909</Number>
-            <Street>West Broadway</Street>
-            <City>Glendale</City>
-            <State>AZ</State>
-            <Zip>85301</Zip>
-        </Address>
-    </Hotel>
-    <Hotel Rating="4.1">
-        <Name>Courtyard by Marriott Tempe</Name>
-        <Phone>480-456-1234</Phone>
-        <Address NearstAirport="Sky Harbor">
-            <Number>110</Number>
-            <Street>University Dr</Street>
-            <City>Tempe</City>
-            <State>AZ</State>
-            <Zip>85281</Zip>
-        </Address>
-    </Hotel>
-</Hotel>
+<?xml version="1.0" encoding="UTF-8"?>
+<Hotels xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://example.com/Hotels.xsd">
+
+	<!-- 1. Missing the required Address attribute "ClosestAirport" -->
+	<Hotel Rating="4.2">
+		<Name>Renaissance Scottsdale</Name>
+		<ContactNumber>480-123-4567</ContactNumber>
+		<ContactNumber>480-234-5678</ContactNumber>
+		<Address>
+			<Number>101</Number>
+			<StreetName>East McDowell Rd</StreetName>
+			<City>Scottsdale</City>
+			<State>AZ</State>
+			<PostalCode>85254</PostalCode>
+		</Address>
+	</Hotel>
+
+	<!-- 2. Missing the required Hotel attribute "Rating" -->
+	<Hotel>
+		<Name>Hyatt Place Phoenix</Name>
+		<ContactNumber>602-345-6789</ContactNumber>
+		<Address ClosestAirport="Phoenix Sky Harbor">
+			<Number>202</Number>
+			<StreetName>North 3rd Ave</StreetName>
+			<City>Phoenix</City>
+			<State>AZ</State>
+			<PostalCode>85004</PostalCode>
+		</Address>
+	</Hotel>
+
+	<!-- 3. Invalid <Number> (requires integer, but "OneZeroOne" is not an integer) -->
+	<Hotel Rating="3.9">
+		<Name>Fairfield Inn Tempe</Name>
+		<ContactNumber>480-555-1111</ContactNumber>
+		<Address ClosestAirport="Phoenix Sky Harbor">
+			<Number>OneZeroOne</Number>
+			<StreetName>South Mill Ave</StreetName>
+			<City>Tempe</City>
+			<State>AZ</State>
+			<PostalCode>85281</PostalCode>
+		</Address>
+	</Hotel>
+
+</Hotels>
