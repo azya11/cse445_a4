@@ -3,54 +3,49 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified">
 
-	<!-- 
-    This XSD is designed to validate:
-      <Hotels>
-        <Hotel Rating="decimal">
-          <Name>...</Name>
-          <ContactNumber>...</ContactNumber> (0..Many)
-          <Address ClosestAirport="required">
-            <Number>integer</Number>
-            <StreetName>string</StreetName>
-            <City>string</City>
-            <State>string</State>
-            <PostalCode>integer</PostalCode>
-          </Address>
-        </Hotel>
-        ...
-      </Hotels>
-  -->
+	<!-- This XSD enforces:
+         <Hotels>
+           <Hotel Rating="decimal" >
+             <Name>...</Name>
+             <Phone>...</Phone> (may repeat)
+             <Address NearstAirport="required">
+               <Number>integer</Number>
+               <Street>string</Street>
+               <City>string</City>
+               <State>string</State>
+               <Zip>integer</Zip>
+             </Address>
+           </Hotel>
+         </Hotels>
+       -->
 
-	<!-- Root element: <Hotels> -->
 	<xs:element name="Hotels">
 		<xs:complexType>
 			<xs:sequence>
 
-				<!-- Repeated <Hotel> elements under <Hotels> -->
+				<!-- Each <Hotels> can have one or more <Hotel> -->
 				<xs:element name="Hotel" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
-							<!-- Hotel sub-elements -->
 							<xs:element name="Name" type="xs:string" />
-							<xs:element name="ContactNumber" type="xs:string" maxOccurs="unbounded" />
+							<xs:element name="Phone" type="xs:string" maxOccurs="unbounded" />
 
 							<xs:element name="Address">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="Number" type="xs:integer" />
-										<xs:element name="StreetName" type="xs:string" />
+										<xs:element name="Street" type="xs:string" />
 										<xs:element name="City" type="xs:string" />
 										<xs:element name="State" type="xs:string" />
-										<xs:element name="PostalCode" type="xs:integer" />
+										<xs:element name="Zip" type="xs:integer" />
 									</xs:sequence>
-									<!-- "ClosestAirport" is a required attribute -->
-									<xs:attribute name="ClosestAirport" type="xs:string" use="required" />
+									<xs:attribute name="NearstAirport" type="xs:string" use="required" />
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
 
-						<!-- "Rating" is a required decimal attribute on <Hotel> -->
-						<xs:attribute name="Rating" type="xs:decimal" use="required" />
+						<!-- The required "Rating" attribute on each <Hotel> -->
+						<xs:attribute name="Rating" type="xs:decimal" use="required"/>
 					</xs:complexType>
 				</xs:element>
 

@@ -1,45 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Hotels xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://example.com/Hotels.xsd">
+<Hotel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://abildamirbekuulu.github.io/cse445_a4/Hotels.xsd">
 
-	<!-- 1. Missing the required Address attribute "ClosestAirport" -->
-	<Hotel Rating="4.2">
+	<!-- Root element is <Hotel> instead of <Hotels>, 
+         so it fails the XSD (the root should be <Hotels>). 
+         Additional nested <Hotel> tags also have issues. -->
+
+	<Hotel Rating="4.1">
 		<Name>Renaissance Scottsdale</Name>
-		<ContactNumber>480-123-4567</ContactNumber>
-		<ContactNumber>480-234-5678</ContactNumber>
-		<Address>
+		<Phone>480-123-4567</Phone>
+		<Address NearstAirport="Scottsdale Airport">
 			<Number>101</Number>
-			<StreetName>East McDowell Rd</StreetName>
+			<Street>East McDowell Rd</Street>
 			<City>Scottsdale</City>
 			<State>AZ</State>
-			<PostalCode>85254</PostalCode>
+			<!-- Zip is missing -->
 		</Address>
 	</Hotel>
 
-	<!-- 2. Missing the required Hotel attribute "Rating" -->
-	<Hotel>
+	<Hotel Rating="4.5">
 		<Name>Hyatt Place Phoenix</Name>
-		<ContactNumber>602-345-6789</ContactNumber>
-		<Address ClosestAirport="Phoenix Sky Harbor">
+		<!-- Phone is missing entirely, which is allowed by XSD only 
+             if <Phone> is 0..unbounded? Actually, the XSD says 
+             <Phone> has minOccurs=1 by default, so it fails. -->
+		<Address NearstAirport="Phoenix Sky Harbor">
 			<Number>202</Number>
-			<StreetName>North 3rd Ave</StreetName>
+			<Street>North 3rd Ave</Street>
 			<City>Phoenix</City>
 			<State>AZ</State>
-			<PostalCode>85004</PostalCode>
+			<Zip>85004</Zip>
 		</Address>
 	</Hotel>
 
-	<!-- 3. Invalid <Number> (requires integer, but "OneZeroOne" is not an integer) -->
-	<Hotel Rating="3.9">
-		<Name>Fairfield Inn Tempe</Name>
-		<ContactNumber>480-555-1111</ContactNumber>
-		<Address ClosestAirport="Phoenix Sky Harbor">
-			<Number>OneZeroOne</Number>
-			<StreetName>South Mill Ave</StreetName>
-			<City>Tempe</City>
+	<Hotel>
+		<!-- Missing the required 'Rating' attribute -->
+		<Name>Sheraton Grand</Name>
+		<Phone>480-567-8901</Phone>
+		<Address>
+			<!-- Missing the required 'NearstAirport' attribute -->
+			<Number>303</Number>
+			<Street>South Mountain Pkwy</Street>
+			<City>Phoenix</City>
 			<State>AZ</State>
-			<PostalCode>85281</PostalCode>
+			<Zip>85015</Zip>
 		</Address>
 	</Hotel>
 
-</Hotels>
+	<Hotel Rating="4.2">
+		<Name>Embassy Suites</Name>
+		<Phone>480-678-9012</Phone>
+		<!-- Address is missing entirely, which fails the XSD 
+             since Address is mandatory -->
+	</Hotel>
+
+	<Hotel Rating="4.6">
+		<!-- Duplicate Name element, 
+             or some invalid content. -->
+		<Name>Omni Scottsdale Resort</Name>
+		<Name>Omni Resort Duplicate</Name>
+		<Phone>480-789-0123</Phone>
+		<Address NearstAirport="Scottsdale Airport">
+			<Number>505</Number>
+			<Street>West Camelback Rd</Street>
+			<City>Scottsdale</City>
+			<State>AZ</State>
+			<Zip>85257</Zip>
+		</Address>
+	</Hotel>
+
+</Hotel>
